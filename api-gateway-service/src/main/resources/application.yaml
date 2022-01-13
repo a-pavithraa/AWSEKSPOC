@@ -1,0 +1,45 @@
+spring:
+  application.name: gateway
+  
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+              allowedOrigins: "*"
+              allowedMethods: "*"
+              allowedHeaders: "*"
+      discovery:
+        locator:
+          enabled: true
+          url-expression: "'http://'+serviceId"
+    kubernetes:
+ #     reload:
+ #       enabled: true
+ #       mode: polling
+ #       period: 5000
+      discovery:
+        filter: "metadata.labels['s1p']"
+jwt.aws.userPoolId: us-east-1_DUfDYLnmA
+jwt.aws.region: us-east-1
+
+server.port: 8765
+bean.message: hello
+logging:
+  level:
+    org.springframework.cloud.gateway: WARN
+    org.springframework.cloud.loadbalancer: WARN
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      enabled: true
+    restart:
+      enabled: true
+    info:
+      enabled: true
