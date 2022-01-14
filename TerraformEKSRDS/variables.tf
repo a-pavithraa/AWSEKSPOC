@@ -6,6 +6,9 @@ variable "oidc_thumbprint_list" {
 variable "region" {
   default = "us-east-1"
 }
+variable "account_id" {
+  description="Account ID"
+}
 
 variable "prefix" {
   default = "travelservice"
@@ -20,3 +23,4 @@ variable "vpc_cidr_block" {
   type        = string
   default     = "10.16.0.0/16"
 }
+

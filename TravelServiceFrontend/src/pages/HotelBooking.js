@@ -58,19 +58,20 @@ const HotelBooking = () => {
   })
   if (hotelsList && checkArray(hotelsList.result))
     details = <React.Fragment>
-      <HotelList resultList={hotelsList.result} currencyCode={currencyCode}/>
-      <Stack spacing={2}>
+     
+      <Stack spacing={3} >
         <Pagination
           count={(Math.floor(hotelsList.count / 25))}
+          color="primary"
           page={page} onChange={handleChange}
-          renderItem={(item) => (
-            <PaginationItem
-              components={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
-              {...item}
-            />
-          )}
+          sx={{  
+            justifyContent:"right",
+            display:'flex'}}
+        
         />
-      </Stack></React.Fragment>
+      </Stack>
+      <HotelList resultList={hotelsList.result} currencyCode={currencyCode}/>
+      </React.Fragment>
   return <Box sx={{ flexGrow: 1 }}>
     <Grid container spacing={2}>
       <Grid item xs={12}>

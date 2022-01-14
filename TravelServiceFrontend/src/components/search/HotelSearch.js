@@ -72,7 +72,7 @@ export default function SearchBar(props) {
          }
         
        }
-    }, 1000);
+    }, 500);
 
     return () => {
            clearTimeout(identifier);

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect,useCallback } from 'react';
 import moduleClasses from './Login.module.scss';
 import { useNavigate,useLocation } from 'react-router-dom';
 import AuthContext from '../store/auth-context';
@@ -6,35 +6,12 @@ import * as AmazonCognitoIdentity from 'amazon-cognito-identity-js';
 
 import { Box, Button, CircularProgress, Grid, TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { LoginTextField } from '../components/ui/Themes';
 
 
 
 
 const Login = () => {
-  const MainBlock = styled('form')(({ theme }) => ({
-    background: '#000',
-    border: 0,
-    borderRadius: 3,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    color: 'white',
-    height: 348,
-    fontSize:"12px",
-    padding: '0 30px',
-    '& .MuiButton':{
-      margin: theme.spacing(2),
-      paddingBottom:theme.spacing(10)
-    },
-    '& .MuiTextField-root': {
-      margin: theme.spacing(2),
-      width: '45ch'
-
-    },
-    '& .MuiInput-input': {
-      paddingLeft: theme.spacing(4),
-      boxShadow: "0 0 6px 0 #00a3ff"
-
-    }
-  }));
  
   const navigate = useNavigate();
   const location = useLocation();
@@ -43,20 +20,20 @@ const Login = () => {
 
   const [isLogin, setIsLogin] = useState(true);
   //const {isLoggedIn,isInvalidCredential}=context;
-  const [userName, setUserName] = useState();
+  const [userName, setUserName] = useState('');
   const [progress, setProgress] = useState(false);
-  const [password, setPassword] = useState();
+  const [password, setPassword] = useState('');
   
-  const setUserNameChange = (event) => {
+  const setUserNameChange = useCallback((event) => { 
 
     setUserName(event.target.value);
 
-  }
-  const setPasswordChange = (event) => {
+  },[]);
+  const setPasswordChange = useCallback((event) => {
     setPassword(event.target.value);
 
 
-  }
+  },[]);
   const switchAuthModeHandler = (event) => {
     event.preventDefault();
     setIsLogin((prevState) => !prevState);
@@ -64,7 +41,7 @@ const Login = () => {
   useEffect(() => {
 
     if (location.hash) {
-      var hash = location.hash.substr(1);
+      var hash = location.hash.substring(1);
 
       var result = hash.split('&').reduce(function (res, item) {
         var parts = item.split('=');
@@ -196,7 +173,7 @@ const Login = () => {
     });
   }
   return (<Box className={moduleClasses.login}>
-    <MainBlock  noValidate autoComplete="off">
+    <form  noValidate autoComplete="off">
       <Grid
         container
         direction="column"
@@ -220,17 +197,13 @@ const Login = () => {
      
 
         <Grid item xs={12}>
-          <TextField required id="standard-required" variant="standard"
-          label="User Name" onChange={setUserNameChange} />
+          <LoginTextField   label="User Name"  onChange={setUserNameChange}  variant="standard"/>
         </Grid>
         <Grid item xs={12}>
-          <TextField
-            id="standard-password-input"
+          <LoginTextField            
             label="Password"
-            type="password"
-            required 
+            type="password"       
             variant="standard"
-
             autoComplete="current-password"
             onChange={setPasswordChange}
           />
@@ -251,7 +224,7 @@ const Login = () => {
 
       </div>
 
-    </MainBlock>
+    </form>
   </Box>);
 
 

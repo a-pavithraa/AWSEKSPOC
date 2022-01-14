@@ -1,9 +1,9 @@
-import { createTheme ,ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import { Box } from '@mui/system';
 import { blue, grey, lightBlue, lightGreen, red } from '@mui/material/colors';
-import { Paper } from '@mui/material';
+import { Paper, TextField } from '@mui/material';
 export const darkTheme = createTheme({
   mode: 'dark',
   palette: {
@@ -19,7 +19,7 @@ export const darkTheme = createTheme({
     secondary: {
       main: '#f44336',
     },
-    danger:{
+    danger: {
       main: red
     }
   },
@@ -29,84 +29,105 @@ export const darkTheme = createTheme({
       styleOverrides: {
         // Name of the slot
         root: {
-        
-            fontSize: '1rem',
-            color:"red"
-          
+
+          fontSize: '1rem',
+          color: "red"
+
           // Some CSS
-          
+
         },
       },
     },
     MuiDialogContent: {
       styleOverrides: {
-      root: {
-         backgroundColor: "#193a58"
+        root: {
+          backgroundColor: "#193a58"
+        }
       }
-   }
-  },
+    },
 
-  MuiDialogTitle: {
-    styleOverrides: {
-    root: {
-       backgroundColor: "#031121",
-       color: "white",
-       '& h6': {
-          color: 'red'
-       }
+    MuiDialogTitle: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#031121",
+          color: "white",
+          '& h6': {
+            color: 'red'
+          }
+        }
+      }
+    },
+    MuiPaginationItem:{
+      ul: {
+        "& .MuiPaginationItem-root": {
+          color: "#fff"
+        }
+      }
     }
- }
-},
-root: {
-  '& .MuiTextField-root': {
-    margin: "10px",
-    width: '25ch'
-
   },
-  '& .MuiInput-input': {
-    paddingLeft:  "10px",
-    boxShadow: "0 0 6px 0 #00a3ff"
+  space: [0, 4, 8, 16, 16, 64],
+  spacing: 2
+}
+);
 
-  }
-},
+export const StyledCard = styled(Card)(({ theme }) => ({
+  display: 'flex', marginLeft: "15px", background: '#002e4f', color: 'white', boxShadow: 'inset 0px 15px 30px rgba(0, 16, 38, 0.5)', borderRadius: "10px"
+
+}));
+
+export const StyledBox = styled(Box)(({ theme }) => ({
+  display: 'flex', alignItems: 'center', paddingTop: theme.spacing(5), paddingLeft: theme.spacing(3)
+
+}));
+
+export const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+
+}));
+
+export const NormalParagraph = styled(Paper)(({ theme }) => ({
+  background: 'transparent',
+  padding: theme.spacing(10),
+  margin: theme.spacing(10),
+  fontSize: "0.6em",
+  color: theme.palette.primary.text.primary
+
+}));
+
+export const ResultDiv = styled(Paper)(({ theme }) => ({
+  background: "#282a37",
+  borderColor: "#a3d7fc",
+  boxShadow: "0 0 8px #a3d7fc",
+  padding: theme.spacing(10),
+  margin: theme.spacing(10),
+  color: theme.palette.primary.text.primary
+
+}));
+
+export const LoginTextField = styled(TextField)(({ theme }) => ({
+  width: '25ch',
+  margin: theme.spacing(3),
+  borderBottomColor: 'white',
+  '& label.Mui-focused': {
+    color: 'white',
   },
-    space: [0, 4, 8, 16, 16, 64],
-    spacing:2
-  }
-   );
-
-   export const StyledCard = styled(Card)(({ theme }) => ({
-    display: 'flex',marginLeft:"15px",background:'#002e4f', color:'white', boxShadow: 'inset 0px 15px 30px rgba(0, 16, 38, 0.5)',borderRadius:"10px"
-  
-  }));
-
-  export const StyledBox = styled(Box)(({ theme }) => ({
-    display: 'flex', alignItems: 'center', paddingTop:theme.spacing(5), paddingLeft:theme.spacing(3)
-  
-  }));
-
-  export const Item = styled(Paper)(({ theme }) => ({
-    ...theme.typography.body2,
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-   
-  }));
-
-  export const NormalParagraph =styled(Paper)(({ theme }) => ({
-    background: 'transparent',   
-    padding: theme.spacing(10),
-    margin: theme.spacing(10),
-    fontSize:"0.6em",
-    color:theme.palette.primary.text.primary
-  
-  }));
-
-  export const ResultDiv= styled(Paper)(({ theme }) => ({
-    background: "#282a37",
-    borderColor:"#a3d7fc",
-    boxShadow: "0 0 8px #a3d7fc",
-    padding: theme.spacing(10),
-    margin: theme.spacing(10),
-    color:theme.palette.primary.text.primary
-  
-  }));
+  '& .MuiInput-underline:before': {
+    borderBottomColor: 'white',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: 'green',
+  },
+  '& .MuiInput-underline-root': {
+    '& fieldset': {
+      borderBottomColor: 'white',
+    },
+    '&:hover fieldset': {
+      borderBottomColor: 'yellow',
+    },
+    '&.Mui-focused fieldset': {
+      borderBottomColor: 'green',
+    },
+  },
+}));
