@@ -30,7 +30,6 @@ Terraform project TerraformS3DNS creates the following resources
 -  Cloud Front
 -  SSL Certificate for the domain
 -  Route 53 record for Cloud front
-
 ![img](https://documents.lucid.app/documents/b0103c7d-0e48-47b5-aca6-7df6e9d8e788/pages/0_0?a=967&x=51&y=-112&w=2397&h=2010&store=1&accept=image%2F*&auth=LCA%2083bdb1e46047c494f609799dd6745be1bc5e5ddf-ts%3D1642308984)
 
 **STEPS**
