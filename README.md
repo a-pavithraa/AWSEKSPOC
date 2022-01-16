@@ -74,4 +74,25 @@ Terraform project TerraformS3DNS creates the following resources
    kubectl apply -f KubernetesManifests/.
    ```
 
+10. Optionaly install kube-prometheus-stack helm chart
+
+ Kube Prometheus Stack:
+
+   ```
+   helm repo add monitoring https://prometheus-community.github.io/helm-charts
+   helm repo update
+   helm pull monitoring/kube-prometheus-stack --untar=true
+   
+   ```
+
+   Create customvalues.yaml with the following values
+
+```yaml
+grafana: 
+  adminPassword: admin
+  service:
+    type: NodePort
+```
+
+
    
