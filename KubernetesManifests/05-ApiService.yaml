@@ -44,7 +44,7 @@ kind: ConfigMap
 metadata:
   name: api-service
 data:  
-  jwt.aws.userPoolId: us-east-1_DUfDYLnmA
+  jwt.aws.userPoolId: user-pool-id
   jwt.aws.region: us-east-1
 
 ---
