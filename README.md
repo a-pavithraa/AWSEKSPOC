@@ -5,6 +5,11 @@
 This project makes use of Booking API and TravelPayouts API. Front end is developed using React and backend with Spring Boot. Resources are provisioned in AWS using Terraform.
 
 I have created microservices for API Gateway, Flight Service, Hotel Service, IATA Service
+![image](https://user-images.githubusercontent.com/23714753/149655570-a8f837be-0160-4f73-aba5-93c6052ee03e.png)
+![image](https://user-images.githubusercontent.com/23714753/149655620-23db61a8-5a30-45ba-87c2-5c94c151a97f.png)
+![image](https://user-images.githubusercontent.com/23714753/149655640-00a99ba1-dc84-4210-8e7b-21f555694256.png)
+![image](https://user-images.githubusercontent.com/23714753/149655688-5bd5a7bf-9917-4352-ac5f-8b4bf8c01b95.png)
+
 
 Authentication is done via Cognito. JWT is passed to API Gateway POD and once the token is validated, the respective service is called. API Gateways provides cross cutting concerns such as logging and security.  API Gateway service makes use of Spring Cloud Kubernetes,Spring Cloud Gateway . ALB can be integrated with Cognito but there are some limitations so went with API gateway pattern.
 
