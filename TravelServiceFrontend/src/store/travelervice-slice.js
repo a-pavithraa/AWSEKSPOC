@@ -32,6 +32,10 @@ const travelServiceSlice = createSlice({
        
         state.bookmarkedProperties ={};
         state.hotelsList={};
+        state.progress={};
+        state.searchedFlightsList={};
+        state.topFlightsList={};
+        state.searchedFlightsList={};
         
       }
    

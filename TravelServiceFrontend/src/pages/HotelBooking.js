@@ -27,13 +27,13 @@ const HotelBooking = () => {
   const currencyCode = getSymbolFromCurrency(authCtx.currency);
   let details = '';
   const handleChange = (event, value) => {
-   
+
     setPage(value);
-    searchResults(searchValues.id,searchValues.fromDate,searchValues.toDate,value);
- 
+    searchResults(searchValues.id, searchValues.fromDate, searchValues.toDate, value);
+
   };
 
-  const searchResults = useCallback((location,fromDate,toDate,page) => {   
+  const searchResults = useCallback((location, fromDate, toDate, page) => {
     const urlParams = {
       room_number: '1',
       order_by: 'popularity',
@@ -45,42 +45,44 @@ const HotelBooking = () => {
       dest_id: location,
       dest_type: 'city',
       locale: 'en-gb',
-      page_number:page
-      
+      page_number: page
+
     }
 
-    if (authCtx.reqHeader !== null && authCtx.reqHeader !== undefined){
-     
+    if (authCtx.reqHeader !== null && authCtx.reqHeader !== undefined) {
+
       dispatch(fetchHotels(authCtx.reqHeader, urlParams));
     }
-     
+
 
   })
   if (hotelsList && checkArray(hotelsList.result))
     details = <React.Fragment>
-     
+
       <Stack spacing={3} >
         <Pagination
           count={(Math.floor(hotelsList.count / 25))}
           color="primary"
           page={page} onChange={handleChange}
-          sx={{  
-            justifyContent:"right",
-            display:'flex'}}
-        
+          sx={{
+            justifyContent: "right",
+            display: 'flex'
+          }}
+
         />
       </Stack>
-      <HotelList resultList={hotelsList.result} currencyCode={currencyCode}/>
-      </React.Fragment>
+      <HotelList resultList={hotelsList.result} currencyCode={currencyCode} />
+    </React.Fragment>
   return <Box sx={{ flexGrow: 1 }}>
     <Grid container spacing={2}>
       <Grid item xs={12}>
         <SearchBar onSearch={searchResults} onSearch={searchResults} />
       </Grid>
       <Grid item xs={12}>
-        {progressBar && <CircularProgress color="success"  sx={{  
-            justifyContent:"center", width:"100%",margin:"auto",
-            display:'flex'}}/>}
+        {progressBar && <CircularProgress color="success" sx={{
+          justifyContent: "center", width: "100%", margin: "auto",
+          display: 'flex'
+        }} />}
         {!progressBar && details}
 
 
