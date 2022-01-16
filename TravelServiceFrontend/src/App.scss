@@ -97,3 +97,21 @@
   margin-top: 10px;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #9562e7;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(67, 6, 235);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

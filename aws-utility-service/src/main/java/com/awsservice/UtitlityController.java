@@ -27,9 +27,10 @@ public class UtitlityController {
 	@Autowired
 	private BookmarkedHotelsRepository bookmarkedHotelsRepository;
 
-	@GetMapping("/{userName}")
-	public BookmarkedHotels getTopBookings(@PathVariable String userName) {
-	
+	@GetMapping("/Hotels")
+	public BookmarkedHotels getHotels(String userName) {
+		
+		logger.info("Inside get hotels");
 	
 		BookmarkedHotels hotels = bookmarkedHotelsRepository.findById(userName).orElse(null);
 		if(hotels!=null)
@@ -39,11 +40,13 @@ public class UtitlityController {
 	
 	}
 	
-	@PostMapping("/{userName}")
-	public BookmarkedHotels getTopBookings(@PathVariable String userName,@RequestBody HotelDetails hotelDetails) {
 	
+	@PostMapping("/Hotels")
+	public BookmarkedHotels postHotelDetails(String userName,@RequestBody HotelDetails hotelDetails) {
 	
+		logger.info("Inside post hotels");
 		BookmarkedHotels hotels = bookmarkedHotelsRepository.findById(userName).orElse(null);
+		System.out.println(userName);
 		if(hotels!=null)
 		{
 			logger.info(hotels.toString());
@@ -57,6 +60,7 @@ public class UtitlityController {
 			detailsList.add(hotelDetails);
 			hotels.setHotelDetails(detailsList);
 		}
+		hotels.setUsername(userName);
 		bookmarkedHotelsRepository.save(hotels);
 			
 		return hotels;

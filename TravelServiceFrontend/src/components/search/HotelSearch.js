@@ -100,10 +100,7 @@ export default function SearchBar(props) {
 
       </CardContent>
       </Grid>
-      <Grid item xs={2}>
-      <Button variant="contained"  onClick={displayfavoriteHotels}>Bookmarked Properties</Button>
-      </Grid>
-     
+    
      
       <Grid item xs={12} md={4}>
       <Autocomplete

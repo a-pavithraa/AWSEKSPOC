@@ -5,6 +5,7 @@ import { ResultDiv, StyledCard } from '../ui/Themes';
 import { Divider, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import dateFormat, { masks } from "dateformat";
+import { checkArray } from '../../util/UtilFunctions';
 
 const RouteLine = styled(Divider)(({ theme }) => ({
   marginTop: theme.spacing(5), borderColor: theme.palette.primary.dark
@@ -28,7 +29,8 @@ const BookingDetails = (props) => {
 
     </Grid>
     <Grid item xs={12}>
-      {valuesArr.map(res => {
+     { !checkArray(valuesArr) && <ResultDiv><Typography>No Records found</Typography></ResultDiv>}
+     {checkArray(valuesArr) && valuesArr.map(res => {
         return (<ResultDiv key={res.flight_number}>
           <Grid item sm container>
             <Grid item md={8} container direction="row" spacing={4}>

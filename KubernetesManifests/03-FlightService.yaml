@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: flight-service
+data:  
+  api.travelPayoutKey: <<Insert TravelPayout Key>>
+  api.travelPayputUrl: https://api.travelpayouts.com/v1/
+  api.iataUrl: http://iata-service 
+  
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flight-service
+  labels:
+    app: flight-service
+    s1p: flight
+spec:  
+  selector:
+    matchLabels:
+      app: flight-service
+  template:
+    metadata:
+      labels:
+        app: flight-service
+    spec:          
+      containers:
+      - name: flight-service
+        image: pavithravasudevan/flightbookingservice:0.0.1-SNAPSHOT
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: flight-service    
+        ports:
+        - containerPort: 8100

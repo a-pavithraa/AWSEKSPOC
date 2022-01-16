@@ -3,21 +3,21 @@ import styled from "styled-components";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import React,{useCallback, useContext,useEffect,useState}  from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import AuthContext from '../../store/auth-context';
 import { HOTEL_SERVICE_URL } from "../../util/Constants";
 import { checkArray } from "../../util/UtilFunctions";
 const Img = styled('img')({
- 
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight:'230px'
-    
-  });
+
+  display: 'block',
+  maxWidth: '100%',
+  maxHeight: '230px'
+
+});
 const ImgSlider = (props) => {
   const authCtx = useContext(AuthContext);
-  const [hotelImages,setHotelImages]=useState();
-  const fetchHotelImages = useCallback(async ()=>{
+  const [hotelImages, setHotelImages] = useState();
+  const fetchHotelImages = useCallback(async () => {
 
     const response = await fetch(HOTEL_SERVICE_URL + 'HotelPhotos?locale=en-gb&hotelId=' + props.hotelId, authCtx.reqHeader);
     if (!response.ok) {
@@ -27,52 +27,48 @@ const ImgSlider = (props) => {
     const imgs = await response.json();
     setHotelImages(imgs);
 
-  },[props.hotelId,authCtx])
- 
+  }, [props.hotelId, authCtx])
+
   useEffect(() => {
     fetchHotelImages();
 
 
-}, [props.hotelId]);
+  }, [props.hotelId]);
   let settings = {
-    
+
     infinite: true,
     speed: 600,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
   };
- 
+
   return (
     <React.Fragment>
-   { checkArray(hotelImages)  && <Carousel {...settings}>
+      {checkArray(hotelImages) && <Carousel {...settings}>
         {hotelImages.map(
-            photoEl =>{
-            return   <Wrap key={photoEl.photo_id}>
-            <a alt="image">
-            <Img   src={photoEl.url_max} alt="" />
-            </a>
-          </Wrap>
-     
-            }
+          photoEl => {
+            return <Wrap key={photoEl.photo_id}>
+              <a alt="image">
+                <Img src={photoEl.url_max} alt="" />
+              </a>
+            </Wrap>
+
+          }
         )}
-    
-       </Carousel>} 
-       </React.Fragment>
-  
-     
-   
+
+      </Carousel>}
+    </React.Fragment>
+
+
+
   );
 };
+//Reused from https://github.com/SudhanshuBlaze/disney-plus-clone
 
 const Carousel = styled(Slider)`
-  margin-top: 20px;
- 
-  ${"" /* Overwriting the styles */}
-
-  & > button {
+  margin-top: 20px;  & > button {
     opacity: 0;
-
     height: 100%;
     width: 5vw;
     z-index: 1;
@@ -80,10 +76,7 @@ const Carousel = styled(Slider)`
 
   &:hover {
     & > button {
-      opacity: 1;
-      ${
-        "" /* 0.4s represents time taken for transition and 0s represents after how much time transition will start or take effect */
-      }
+      opacity: 1;    
       transition: opacity 0.4s ease 0s;
     }
   }
@@ -99,9 +92,9 @@ const Carousel = styled(Slider)`
     color: white;
   }
 
+  
   .slick-list {
     overflow: initial;
-    padding-left:20px;
   }
   .slick-prev {
     left: 60px;
@@ -114,12 +107,10 @@ const Wrap = styled.div`
   border-radius: 4px;
   cursor: pointer;
   position: relative;
-
   a {
-    border-radius: 4px;
-    ${"" /* This shadow code can created using Online calculators*/}
+    border-radius: 4px; 
     box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px,
-      rgb(0 0 0 / 73%) 0px 16px 10px -10px;
+    rgb(0 0 0 / 73%) 0px 16px 10px -10px;
     cursor: pointer;
     display: block;
     position: relative;

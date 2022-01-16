@@ -35,6 +35,13 @@ public class IataController {
 	   return airports;
 	}
 	
+	@GetMapping("/AllAirports")
+	public Iterable<Airports> getAllAirports() {
+		
+	   Iterable<Airports> airports= airportRepo.findAll();	   
+	   return airports;
+	}
+	
 	@PostMapping("/CityNameFromCode")
 	public  Map<String, String> getCityNameFromCode(@RequestBody List<String> codes){
 		System.out.println(codes);

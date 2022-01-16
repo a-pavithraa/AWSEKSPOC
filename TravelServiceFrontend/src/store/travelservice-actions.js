@@ -14,13 +14,13 @@ export const fetchSearchedFlights =(header,urlParams)=>{
       }
 
       const data = await response.json();     
-     
+      dispatch(travelServiceActions.setProgress({progress:false}));
 
       return data;
     };
 
     try {
-     // dispatch(travelServiceActions.setProgress({progress:true}));
+      dispatch(travelServiceActions.setProgress({progress:true}));
       const searchedFlightsList = await fetchData();      
       dispatch(
           travelServiceActions.setSearchedFlightsList({
@@ -47,15 +47,18 @@ export const fetchTopFlights =(header,location,currency)=>{
         throw new Error('Could not fetch hotels!');
       }
 
-      const data = await response.json();     
+      const data = await response.json();    
+      dispatch(travelServiceActions.setProgress({progress:false})); 
      
 
       return data;
     };
 
     try {
-     // dispatch(travelServiceActions.setProgress({progress:true}));
+      dispatch(travelServiceActions.setProgress({progress:true}));
+      
       const topFlightsList = await fetchData();
+      
      
       dispatch(
           travelServiceActions.setTopFlightsList({
@@ -82,13 +85,13 @@ export const fetchHotels = (header,params) => {
         }
   
         const data = await response.json();     
-       // dispatch(travelServiceActions.setProgress({progress:false}));
+        dispatch(travelServiceActions.setProgress({progress:false}));
   
         return data;
       };
   
       try {
-       // dispatch(travelServiceActions.setProgress({progress:true}));
+       dispatch(travelServiceActions.setProgress({progress:true}));
         const hotelSearchDetails = await fetchData();
        
         dispatch(

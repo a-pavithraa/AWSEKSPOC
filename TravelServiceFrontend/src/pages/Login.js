@@ -185,7 +185,7 @@ const Login = () => {
        
           <div className={moduleClasses.floatRight}>
             <Button
-              type='submit'
+              
               onClick={switchAuthModeHandler}
               sx={{color:"white"}}
 
@@ -210,10 +210,10 @@ const Login = () => {
         </Grid>
       </Grid>
 
-      <div className={`${moduleClasses.btnActions} ${moduleClasses.borderBottom}`}>
+      <div className={`${moduleClasses.btnActions} `}>
 
 
-        {progress ? <CircularProgress color="secondary" size={24}  /> : <Button variant="contained" color="success" onClick={submitHandler}> {isLogin ? 'Login' : 'Create Account'}</Button>}
+        {progress ? <CircularProgress color="secondary" size={24}  /> : <Button type="submit" variant="contained" color="success" onClick={submitHandler}> {isLogin ? 'Login' : 'Create Account'}</Button>}
 
 
        

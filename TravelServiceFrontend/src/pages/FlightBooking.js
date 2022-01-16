@@ -1,4 +1,4 @@
-import React,{useCallback, useContext, useEffect} from 'react';
+import React,{useCallback, useContext, useEffect,useState} from 'react';
 
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -22,6 +22,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const FlightBooking = ()=>{
   const topFlightsList = useSelector((state) => state.travelService.topFlightsList);
   const searchedFlightsList = useSelector((state) => state.travelService.searchedFlightsList);
+  const [searchInvoked,setSearchInvoked]=useState(false);
   //const progressBar = useSelector((state) => state.travelService.progress);
   const authCtx=useContext(AuthContext);
   const currencyCode =getSymbolFromCurrency(authCtx.currency);
@@ -36,6 +37,7 @@ const FlightBooking = ()=>{
      
       dispatch(fetchSearchedFlights(authCtx.reqHeader, searchParams));
     }
+    setSearchInvoked(true);
      
     
   })
@@ -49,8 +51,8 @@ return (
       <Grid item xs={11} md={6}>
       {checkArray(topFlightsList) && <BookingDetails title="Popular Routes" result={topFlightsList} currencyCode={currencyCode} />}
       </Grid>
-      <Grid item xs={11} md={6}>
-      {checkArray(searchedFlightsList) && <BookingDetails title="Cheapest Flights" result={searchedFlightsList} currencyCode={currencyCode} />}
+      <Grid item xs={11} md={6}>        
+      {searchInvoked && <BookingDetails title="Cheapest Flights" result={searchedFlightsList} currencyCode={currencyCode} />}
       </Grid>
     </Grid>
   </Box>

@@ -78,8 +78,10 @@ const HotelBooking = () => {
         <SearchBar onSearch={searchResults} onSearch={searchResults} />
       </Grid>
       <Grid item xs={12}>
-        {progressBar && <CircularProgress color="secondary" />}
-        {details}
+        {progressBar && <CircularProgress color="success"  sx={{  
+            justifyContent:"center", width:"100%",margin:"auto",
+            display:'flex'}}/>}
+        {!progressBar && details}
 
 
       </Grid>
