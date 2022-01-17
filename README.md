@@ -55,7 +55,7 @@ Terraform project TerraformS3DNS creates the following resources
    terraform apply --auto-approve
    ```
 
-5. Once the resources are created, get the MySQL endpoint and substitute in ConfigMap and external name service in 01-IataService.yaml 
+5. Once the resources are created, get the MySQL endpoint and substitute in ConfigMap and external name service in 01-IataService.yaml . Connect to MySQl and execute DBScript.sql to create and populate table for IATA codes
 
 6. Create DNS record for Ingress ALB in Route53
 
