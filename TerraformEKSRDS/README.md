@@ -1,4 +1,5 @@
-# Learn Terraform - Provision an EKS Cluster
+Create terraform.tfvars with the following entries:
 
+account_id= AWS Account ID
 
-Create terraform.tfvars with the entry account_id=value of AWS Account ID
+hosted_zone_id= ID of R53 Hosted Zone
