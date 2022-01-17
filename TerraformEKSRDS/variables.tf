@@ -24,3 +24,8 @@ variable "vpc_cidr_block" {
   default     = "10.16.0.0/16"
 }
 
+variable "hosted_zone_id"{
+description="Hosted Zone Id for External DNS service account"
+type= string
+}
+
