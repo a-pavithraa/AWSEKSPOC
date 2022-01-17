@@ -37,6 +37,7 @@ Terraform project TerraformS3DNS creates the following resources
 
 **Pre-Requisites:**
 
+- AWS Account
 - Cognito User Pool (User Pool Id has to be added to jwt.aws.userPoolId in Api Gateway ConfigMap)
 - Domain hosted at Route 53
 
