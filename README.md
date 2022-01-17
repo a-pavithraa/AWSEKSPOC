@@ -38,6 +38,7 @@ Terraform project TerraformS3DNS creates the following resources
 
 - Cognito User Pool (User Pool Id has to be added to jwt.aws.userPoolId in Api Gateway ConfigMap)
 - Domain hosted at Route 53
+
 **STEPS**
 
 1. Register with https://rapidapi.com/tipsters/api/booking-com/ to get key for Booking API
