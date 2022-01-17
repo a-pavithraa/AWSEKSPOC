@@ -23,6 +23,7 @@ Terraform project TerraformEKSRDS creates the following resources
 - IAM roles for service account to access DynamoDB (set up access at POD level for AWS services)
 - MySQL DB
 - DynamoDB
+- Service Accounts along with IAM role association for both DynamoDB and External DNS (Check out the links:  https://marcincuber.medium.com/amazon-eks-with-oidc-provider-iam-roles-for-kubernetes-services-accounts-59015d15cb0c , https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/aws.md#iam-permissions)
 
 Terraform project TerraformS3DNS creates the following resources
 
@@ -100,4 +101,3 @@ grafana:
   service:
     type: NodePort
 ```
-
