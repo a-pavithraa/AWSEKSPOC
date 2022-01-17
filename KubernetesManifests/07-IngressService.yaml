@@ -20,7 +20,7 @@ metadata:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP":80}]'
     
     #alb.ingress.kubernetes.io/auth-type: cognito
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:721541693596:certificate/bc69cecb-6be7-4641-bf50-eadbbbf90921
+    alb.ingress.kubernetes.io/certificate-arn: <<Placeholder for CertificateARN>>
     #alb.ingress.kubernetes.io/auth-session-cookie: AWSELBAuthSessionCookie
     #alb.ingress.kubernetes.io/auth-on-unauthenticated-request: authenticate
     #alb.ingress.kubernetes.io/auth-idp-cognito: '{"UserPoolArn": "arn:aws:cognito-idp:us-east-1:721541693596:userpool/us-east-1_DUfDYLnmA","UserPoolClientId":"3sg2839k39jun49dp72br07bi1","UserPoolDomain":"auth.pavithraavasudevan.com"}'
@@ -53,4 +53,4 @@ spec:
   
     
          
-# Important Note-1: In path based routing order is very important, if we are going to use  "/*", try to use it at the end of all rules.                         
+# Important Note-1: In path based routing order is very important, if we are going to use  "/*", try to use it at the end of all rules.                         xxxxxxxxxx grafana:   adminPassword: admin  service:    type: NodePortyaml
