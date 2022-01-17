@@ -29,10 +29,10 @@ Terraform project TerraformS3DNS creates the following resources
 - S3 bucket for static website hosting
 - IAM policy for S3
 
--  Cloud Front
--  SSL Certificate for the domain
--  Route 53 record for Cloud front
-![img](https://documents.lucid.app/documents/b0103c7d-0e48-47b5-aca6-7df6e9d8e788/pages/0_0?a=967&x=51&y=-112&w=2397&h=2010&store=1&accept=image%2F*&auth=LCA%2083bdb1e46047c494f609799dd6745be1bc5e5ddf-ts%3D1642308984)
+- Cloud Front Distribution
+- SSL Certificate for the domain
+- Route 53 record for Cloud front
+  ![img](https://documents.lucid.app/documents/b0103c7d-0e48-47b5-aca6-7df6e9d8e788/pages/0_0?a=967&x=51&y=-112&w=2397&h=2010&store=1&accept=image%2F*&auth=LCA%2083bdb1e46047c494f609799dd6745be1bc5e5ddf-ts%3D1642308984)
 
 **Pre-Requisites:**
 
@@ -57,9 +57,9 @@ Terraform project TerraformS3DNS creates the following resources
 
 5. Once the resources are created, get the MySQL endpoint and substitute in ConfigMap and external name service in 01-IataService.yaml . Connect to MySQl and execute DBScript.sql to create and populate table for IATA codes
 
-6. Create DNS record for Ingress ALB in Route53
+   
 
-7. Navigate to **TerraformS3DNS** and execute the following command
+6. Navigate to **TerraformS3DNS** and execute the following command
 
    ```
    terraform init
@@ -69,27 +69,27 @@ Terraform project TerraformS3DNS creates the following resources
 
    
 
- 8. Navigate to **TravelServiceFrontend** and execute the following command
+ 7. Navigate to **TravelServiceFrontend** and execute the following command
 
     ```
     npm run build
     ```
 
-9. Final Step is applying Kubernetes manifests
+8. Final Step is applying Kubernetes manifests. There are some placeholders which have to be replaced. Mentioned in Manifests Readme file
 
    ```
    kubectl apply -f KubernetesManifests/.
    ```
 
-10. Optionaly install kube-prometheus-stack helm chart
+9. Optionaly install kube-prometheus-stack helm chart
 
  Kube Prometheus Stack:
 
    ```
-   helm repo add monitoring https://prometheus-community.github.io/helm-charts
-   helm repo update
-   helm pull monitoring/kube-prometheus-stack --untar=true
-   
+helm repo add monitoring https://prometheus-community.github.io/helm-charts
+helm repo update
+helm pull monitoring/kube-prometheus-stack --untar=true
+
    ```
 
    Create customvalues.yaml with the following values
@@ -101,5 +101,3 @@ grafana:
     type: NodePort
 ```
 
-
-   
