@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.awsservice.config.DynamoDbEnhanced;
 import com.awsservice.model.BookmarkedHotels;
 import com.awsservice.model.HotelDetails;
-import com.awsservice.repository.BookmarkedHotelsRepository;
+
 
 
 
@@ -25,14 +26,14 @@ public class UtitlityController {
 	
 	private Logger logger = LoggerFactory.getLogger(UtitlityController.class);
 	@Autowired
-	private BookmarkedHotelsRepository bookmarkedHotelsRepository;
+	private DynamoDbEnhanced bookmarkedHotelsRepository;
 
 	@GetMapping("/Hotels")
 	public BookmarkedHotels getHotels(String userName) {
 		
 		logger.info("Inside get hotels");
 	
-		BookmarkedHotels hotels = bookmarkedHotelsRepository.findById(userName).orElse(null);
+		BookmarkedHotels hotels = bookmarkedHotelsRepository.getHotels(userName);
 		if(hotels!=null)
 			logger.info(hotels.toString());
 		return hotels;
@@ -45,12 +46,12 @@ public class UtitlityController {
 	public BookmarkedHotels postHotelDetails(String userName,@RequestBody HotelDetails hotelDetails) {
 	
 		logger.info("Inside post hotels");
-		BookmarkedHotels hotels = bookmarkedHotelsRepository.findById(userName).orElse(null);
+		BookmarkedHotels hotels = bookmarkedHotelsRepository.getHotels(userName);
 		System.out.println(userName);
 		if(hotels!=null)
 		{
 			logger.info(hotels.toString());
-			List<HotelDetails> detailsList=hotels.getHotelDetails();
+			List<HotelDetails> detailsList=hotels.getHotelsList();
 			detailsList.add(hotelDetails);
 			
 		}
@@ -58,10 +59,10 @@ public class UtitlityController {
 			hotels=new BookmarkedHotels();
 			List<HotelDetails> detailsList=new ArrayList<>();
 			detailsList.add(hotelDetails);
-			hotels.setHotelDetails(detailsList);
+			hotels.setHotelsList(detailsList);
 		}
 		hotels.setUsername(userName);
-		bookmarkedHotelsRepository.save(hotels);
+		bookmarkedHotelsRepository.injectDynamoItem(hotels);
 			
 		return hotels;
 		

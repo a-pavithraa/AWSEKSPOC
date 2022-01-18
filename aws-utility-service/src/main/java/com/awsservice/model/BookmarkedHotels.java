@@ -2,31 +2,40 @@ package com.awsservice.model;
 
 import java.util.List;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverter;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@Data
-@DynamoDBTable(tableName = "BookmarkedHotels")
-@DynamoDBDocument
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
+
+@DynamoDbBean
 public class BookmarkedHotels {
-	@DynamoDBHashKey
-	private String username;
 
-	 @DynamoDBAttribute
-	@DynamoDBTypeConverted(converter = HotelDetailsConverter.class)
-	private List<HotelDetails> hotelDetails;
+	@DynamoDbPartitionKey
+    public String getUsername() {
+		return username;
+	}
 
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+    private String username;
+   
+    private List<HotelDetails> hotelsList;
+    
+    
+
+    public List<HotelDetails> getHotelsList() {
+		return hotelsList;
+	}
+
+	public void setHotelsList(List<HotelDetails> hotelsList) {
+		this.hotelsList = hotelsList;
+	}
+
+	public BookmarkedHotels()
+    {
+    }
+
+   
 }
-
